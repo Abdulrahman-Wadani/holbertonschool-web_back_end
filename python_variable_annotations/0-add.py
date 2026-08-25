@@ -2,6 +2,6 @@
 """ add function """
 
 
-def add(a: float, b: float) -> str:
+def add(a: float, b: float) -> float:
     """" add 2 numbers """
-    return a + b
+    return (a + b)
