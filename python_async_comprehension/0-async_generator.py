@@ -2,9 +2,9 @@
 """
 This module contains an asynchronous generator coroutine.
 """
-from typing import AsyncGenerator
 import asyncio
 import random
+from typing import AsyncGenerator
 
 
 async def async_generator() -> AsyncGenerator[float, None]:
