@@ -34,7 +34,6 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         assert isinstance(page, int) and page > 0 and isinstance(
             page_size, int) and page_size > 0
-        if self.__dataset is None:
-            self.dataset()
+        data = self.dataset()
         start, end = index_range(page, page_size)
-        return self.__dataset[start: end]
+        return data[start: end]
