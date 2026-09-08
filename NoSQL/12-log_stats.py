@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
 """
-Module that lists all documents in a MongoDB collection
+Provides some stats about Nginx logs stored in MongoDB
 """
 if __name__ == "__main__":
     from pymongo import MongoClient
 
-    clint = MongoClient('mongodb://127.0.0.1:27017')
-    nginx_collection = clint.logs.nginx
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    nginx_collection = client.logs.nginx
 
-    print(f'{nginx_collection.count_documents({})} logs')
+    # 1. طباعة إجمالي السجلات
+    print(f"{nginx_collection.count_documents({})} logs")
+
+    # 2. طباعة الإحصائيات للطرق (Methods)
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
         count = nginx_collection.count_documents({'method': method})
         print(f"\tmethod {method}: {count}")
-    print(f"{nginx_collection.count_documents({'method': 'GET',
-                                               'path': '/status'})} status check")
+
+    # 3. طباعة فحص الحالة (Status check)
+    status_count = nginx_collection.count_documents(
+        {'method': 'GET', 'path': '/status'}
+    )
+    print(f"{status_count} status check")
