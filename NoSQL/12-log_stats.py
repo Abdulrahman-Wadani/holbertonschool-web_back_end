@@ -6,18 +6,13 @@ if __name__ == "__main__":
     from pymongo import MongoClient
 
     clint = MongoClient('mongodb://127.0.0.1:27017')
-    nginc_collection = clint.logs.nginx
+    nginx_collection = clint.logs.nginx
 
-    print(f'{nginc_collection.count_documents({})} logs')
-    print(f"Methods:\
-\n\tmethod GET: {nginc_collection.count_documents({'method': 'GET'})}\
-\n\tmethod POST: {nginc_collection.count_documents(
-        {'method': 'POST'})}\
-\n\tmethod PUT: {nginc_collection.count_documents({'method': 'PUT'})}\
-\n\tmethod PATCH: {nginc_collection.count_documents(
-            {'method': 'PATCH'})}\
-\n\tmethod DELETE: {nginc_collection.count_documents(
-                {'method': 'DELETE'})}"
-    )
-    print(f"{nginc_collection.count_documents(
+    print(f'{nginx_collection.count_documents({})} logs')
+    print("Methods:")
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    for method in methods:
+        count = nginx_collection.count_documents({'method': method})
+        print(f"\tmethod {method}: {count}")
+    print(f"{nginx_collection.count_documents(
         {'method': 'GET', 'path': '/status'})} status check")
