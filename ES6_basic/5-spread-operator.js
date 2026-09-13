@@ -1,3 +1,3 @@
 export default function concatArrays(array1, array2, string) {
-    return array1.concatArrays(array2.concatArrays(string));
+    return array1 + array2 + string;
 }
