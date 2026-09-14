@@ -10,5 +10,6 @@ export default class HolbertonClass {
 
         if (typeof hint === String)
             return this._location;
+        return this._location;
     }
 }
