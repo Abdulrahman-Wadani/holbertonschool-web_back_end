@@ -6,4 +6,7 @@ export default class Airport {
     [Symbol.toPrimitive](){
         return this._code;
     }
+    [Symbol.toString]() {
+        return `[object ${this}]`
+    }
 }
